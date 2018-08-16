@@ -16,12 +16,18 @@ class ArticleController extends Controller
 
     public function rank(){
         $articles = Article::where('report_count','<',10)
-                ->where('type','normal')
+                ->where('category','normal')
                 ->where('delete_flag',0)
                 ->orderBy('like_count','desc')
                 ->take(3)
                 ->get();
         return view('article.rank',['articles'=>$articles]);
+    }
+
+    public function post_history(){
+        $user = Auth::user();
+        $articles = Article::where('user_id',$user->id)->get();
+        return view('article.post_history',['articles'=>$articles, 'user'=>$user]);
     }
     
     public function index2(Request $request){
@@ -37,19 +43,16 @@ class ArticleController extends Controller
 
     public function result(Request $request){
         $keyword = $request->keyword;
-        $result = Article::where('job','%' . $keyword . '%')
-                ->orWhere('body','%' . $keyword . '%')
-                ->where('type','normal')
-                ->where('delete_flag',0)
-                ->orderBy('like_count','desc')
-                ->take(3)
+        $articles = Article::where('body', 'like', '%' . $keyword . '%')
+                ->orWhere('job', 'like', '%' . $keyword . '%')
                 ->get();
-        $result = Article::paginate(10);
-        return view('article.index',['articles'=>$result]);
+        $data = Article::paginate(10);
+        return view('article.result',['articles'=>$articles]);
     }
     
     public function create(){
-        return view('article.create');
+        $user = Auth::user();
+        return view('article.create',['user'=>$user]);
     }
     
     public function store(Request $request)
@@ -62,6 +65,7 @@ class ArticleController extends Controller
         $article = new Article;
         $article->job = $request->job;
         $article->body = $request->body;
+        $article->user_id = $request->user_id;
         $article->save();
         
         return view('article.store');

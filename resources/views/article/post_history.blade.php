@@ -7,38 +7,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body class="p-3">
-      
+    <h1>投稿履歴</h1>
     @if ($user->id == true)
     <h1>USER_ID:{{ $user->id }}</h1>    
     @endif
-    
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+
+    @foreach ($articles as $article)
+    <div class="card mb-2">
+      <div style="border:solid 1px #bbb;">
+        <p style="font-weight:bold;">{{$loop->iteration}} {{ $article->job }}</p>
+        <p class="card-text">{{ $article->body }}</p>
+        {{ $article->updated_at }}
+
+            <form method="get" action="/report/{{ $article->id }}">
+            {{ csrf_field() }}
+            <input type="hidden" class="form-control" name="id" value="{{ $article->id }}">
+            <button type="submit" class="btn btn-primary">通報</button>
+            </form>
+
+            <form method="post" action="/edit">
+            {{ csrf_field() }}
+            <input type="hidden" class="form-control" name="id" value="{{ $article->id }}">
+            <button type="submit" class="btn btn-primary">共感 {{ $article->like_count }}</button>
+            </form>
+        
+        <?php //<a href="/delete/{{ $article->id }}" class="card-link">削除</a> ?>
+      </div>
     </div>
-    @endif
-
-    <form method="post" action="/create">
-      {{ csrf_field() }}
-        @if ($user->id == true)
-        <input type="hidden" class="form-control" name="user_id" value="{{ $user->id }}">   
-        @endif
-      <div class="form-group">
-        <label for="jobInput">職業</label>
-        <input type="text" class="form-control" id="jobInput" name="job">
-      </div>
-      <div class="form-group">
-        <label for="bodyInput">内容</label>
-        <textarea class="form-control" id="bodyInput" rows="3" name="body"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">新規追加</button>
-    </form>
-
-    <a href="/" class="btn btn-primary">一覧に戻る</a>
+    @endforeach
+    <p><a href="/create" class="btn btn-primary">投稿する</a></p>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

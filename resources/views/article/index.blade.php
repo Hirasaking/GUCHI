@@ -8,7 +8,15 @@
   </head>
   <body class="p-3">
     <h1>Article</h1>
+
     <p><a href="/create" class="btn btn-primary">投稿する</a></p>
+    <p><a href="/post_history" class="btn btn-primary">自分の投稿一覧</a></p>
+    <p><a href="/rank" class="btn btn-primary">ランキング</a></p>
+    <p><a href="/search" class="btn btn-primary">検索する</a></p>
+    <p><a href="/page" class="btn btn-primary">会員専用</a></p>
+    <p><a href="/login" class="btn btn-primary">ログイン</a></p>
+    <p><a href="/logout" class="btn btn-primary">ログアウト</a></p>
+    <p><a href="/register" class="btn btn-primary">新規登録</a></p>
 
     @foreach ($articles as $article)
     <div class="card mb-2">
@@ -33,6 +41,7 @@
       </div>
     </div>
     @endforeach
+
     <p><a href="/create" class="btn btn-primary">投稿する</a></p>
     {{ $articles->links() }}
 

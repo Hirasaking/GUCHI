@@ -1,9 +1,12 @@
 <?php
 
+Route::get('logout', 'ArticleController@index');
+
 Route::get('/', 'ArticleController@index');
 
 Route::get('rank', 'ArticleController@rank');
 
+Route::get('post_history', 'ArticleController@post_history')->middleware('auth');
 
 Route::get('create', 'ArticleController@create');
 Route::post('create', 'ArticleController@store');
@@ -12,12 +15,10 @@ Route::get('edit/{id}', 'ArticleController@edit');
 Route::post('edit', 'ArticleController@update');
 
 Route::get('search', 'ArticleController@search');
-Route::post('search', 'ArticleController@result');
+Route::get('result', 'ArticleController@result');
 
 Route::get('report/{id}', 'ArticleController@edit_report');
-//Route::post('report', 'ArticleController@report');
 Route::post('update_report', 'ArticleController@report');
-
 
 Route::get('delete/{id}', 'ArticleController@show');
 Route::post('delete', 'ArticleController@delete');
