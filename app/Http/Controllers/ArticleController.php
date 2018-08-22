@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 class ArticleController extends Controller
 {
     public function index(){
@@ -14,9 +13,12 @@ class ArticleController extends Controller
         return view('article.index',['articles'=>$articles]);
     }
 
-    public function rank(){
+    public function rank(Request $request){
+        
+        $rank_scope_date = Carbon::now()->subDay(3); //3日前の日付取得
         $articles = Article::where('report_count','<',10)
                 ->where('category','normal')
+                ->where('created_at', '>=', $rank_scope_date)
                 ->where('delete_flag',0)
                 ->orderBy('like_count','desc')
                 ->take(3)

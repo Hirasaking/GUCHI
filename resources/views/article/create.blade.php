@@ -8,10 +8,6 @@
   </head>
   <body class="p-3">
       
-    @if ($user->id == true)
-    <h1>USER_ID:{{ $user->id }}</h1>    
-    @endif
-    
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -24,9 +20,6 @@
 
     <form method="post" action="/create">
       {{ csrf_field() }}
-        @if ($user->id == true)
-        <input type="hidden" class="form-control" name="user_id" value="{{ $user->id }}">   
-        @endif
       <div class="form-group">
         <label for="jobInput">職業</label>
         <input type="text" class="form-control" id="jobInput" name="job">
@@ -35,7 +28,7 @@
         <label for="bodyInput">内容</label>
         <textarea class="form-control" id="bodyInput" rows="3" name="body"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">新規追加</button>
+      <button type="submit" class="btn btn-primary">投稿する</button>
     </form>
 
     <a href="/" class="btn btn-primary">一覧に戻る</a>

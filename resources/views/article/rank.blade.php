@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body class="p-3">
-    <h1>ランキング</h1>
+    <h1>グチのランキング</h1>
 
-    <p>通報数が１０未満なら表示する</p>
-    <p>削除フラグがTrueの投稿は表示されない</p>
+    <p>通報数が１０未満</p>
+    <p>削除フラグがfalse</p>
+    <p>投稿から3日以内</p>
+    <p>投稿カテゴリ</p>
+    
+    <?php var_dump($articles); ?>
 
     @foreach ($articles as $article)
     
