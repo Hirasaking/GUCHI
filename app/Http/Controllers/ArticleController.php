@@ -2,19 +2,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Article;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Article;
 use Carbon\Carbon;
+
 class ArticleController extends Controller
 {
-    public function index(){
-        $articles = Article::all();
-        $articles = Article::paginate(5);
-        return view('article.index',['articles'=>$articles]);
+    public function index()
+    {
+        $articles = (new Article)->getArticleList();
+        return view('article.index')->with('articles', $articles);
     }
 
-    public function rank(Request $request){
-        
+    public function rank(Request $request)
+    {
         $rank_scope_date = Carbon::now()->subDay(3); //3日前の日付取得
         $articles = Article::where('report_count','<',10)
                 ->where('category','normal')
@@ -32,13 +33,6 @@ class ArticleController extends Controller
         return view('article.post_history',['articles'=>$articles, 'user'=>$user]);
     }
     
-    public function index2(Request $request){
-        $user = Auth::user();
-        $sort = $request->sort;
-        $articles = Article::paginate(10);
-        return view('page.index',['articles'=>$articles, 'user'=>$user]);
-    }
-    
     public function search(){
         return view('article.search');
     }
@@ -54,20 +48,14 @@ class ArticleController extends Controller
     
     public function create(){
         $user = Auth::user();
-        return view('article.create',['user'=>$user]);
+        return view('article.create')->with('user', $user);
     }
     
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'job' => 'required|max:60',
-            'body' => 'required',
-            ]);
-        
         $article = new Article;
-        $article->job = $request->job;
         $article->body = $request->body;
-        $article->user_id = $request->user_id;
+        $article->user_id = Auth::user()->id;
         $article->save();
         
         return view('article.store');

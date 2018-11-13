@@ -21,10 +21,6 @@
     <form method="post" action="/create">
       {{ csrf_field() }}
       <div class="form-group">
-        <label for="jobInput">職業</label>
-        <input type="text" class="form-control" id="jobInput" name="job">
-      </div>
-      <div class="form-group">
         <label for="bodyInput">内容</label>
         <textarea class="form-control" id="bodyInput" rows="3" name="body"></textarea>
       </div>
