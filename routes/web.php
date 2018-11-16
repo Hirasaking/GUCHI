@@ -1,20 +1,17 @@
 <?php
 
     Route::get('/', 'ArticleController@index');
+    Route::get('rank', 'ArticleController@rank');
 
 // 全ユーザ
 Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
   // ユーザ一覧
-
-    Route::get('rank', 'ArticleController@rank');
-
     Route::get('create', 'ArticleController@create');
     Route::post('create', 'ArticleController@store');
 
     Route::get('edit/{id}', 'ArticleController@edit');
     Route::post('edit', 'ArticleController@update');
 
-    Route::get('result', 'ArticleController@result');
     Route::get('logout', 'ArticleController@index');
 });
 
