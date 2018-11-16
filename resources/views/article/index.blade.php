@@ -17,11 +17,9 @@
         <a href="/logout" class="btn btn-primary">ログアウト</a>
     @endcan
     @can('admin-higher')
-        <a href="/search" class="btn btn-primary">検索する</a>
         <a href="/page" class="btn btn-primary">会員専用</a>
     @endcan
     @can('master-only')
-        <a href="/register" class="btn btn-primary">新規登録</a>
     @endcan
         <a href="/register" class="btn btn-primary">新規登録</a>
     

@@ -14,9 +14,7 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
     Route::get('edit/{id}', 'ArticleController@edit');
     Route::post('edit', 'ArticleController@update');
 
-    Route::get('search', 'ArticleController@search');
     Route::get('result', 'ArticleController@result');
-    Route::get('post_history', 'ArticleController@post_history');
     Route::get('logout', 'ArticleController@index');
 });
 

@@ -20,10 +20,6 @@ class ArticleController extends Controller
         return view('article.rank',['articles'=>$articles]);
     }
     
-    public function search(){
-        return view('article.search');
-    }
-
     public function result(Request $request){
         $keyword = $request->keyword;
         $articles = Article::where('body', 'like', '%' . $keyword . '%')
