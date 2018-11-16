@@ -12,7 +12,6 @@
     <h1>GUCHYY!!</h1>
     @can('user-higher')
         <a href="/create" class="btn btn-primary">投稿する</a>
-        <a href="/post_history" class="btn btn-primary">自分の投稿一覧</a>
         <a href="/rank" class="btn btn-primary">ランキング</a>
         <a href="/login" class="btn btn-primary">ログイン</a>
         <a href="/logout" class="btn btn-primary">ログアウト</a>
