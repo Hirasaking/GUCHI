@@ -19,12 +19,6 @@ class ArticleController extends Controller
         $articles = (new Article)->getArticleRankList();
         return view('article.rank',['articles'=>$articles]);
     }
-
-    public function post_history(){
-        $user = Auth::user();
-        $articles = Article::where('user_id',$user->id)->get();
-        return view('article.post_history',['articles'=>$articles, 'user'=>$user]);
-    }
     
     public function search(){
         return view('article.search');

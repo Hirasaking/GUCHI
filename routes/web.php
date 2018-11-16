@@ -7,7 +7,6 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
   // ユーザ一覧
 
     Route::get('rank', 'ArticleController@rank');
-    Route::get('post_history', 'ArticleController@post_history');
 
     Route::get('create', 'ArticleController@create');
     Route::post('create', 'ArticleController@store');
