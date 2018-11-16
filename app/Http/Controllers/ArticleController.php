@@ -14,16 +14,9 @@ class ArticleController extends Controller
         return view('article.index')->with('articles', $articles);
     }
 
-    public function rank(Request $request)
+    public function rank()
     {
-        $rank_scope_date = Carbon::now()->subDay(3); //3日前の日付取得
-        $articles = Article::where('report_count','<',10)
-                ->where('category','normal')
-                ->where('created_at', '>=', $rank_scope_date)
-                ->where('delete_flag',0)
-                ->orderBy('like_count','desc')
-                ->take(3)
-                ->get();
+        $articles = (new Article)->getArticleRankList();
         return view('article.rank',['articles'=>$articles]);
     }
 
