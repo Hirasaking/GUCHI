@@ -2,47 +2,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Article;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Article;
 use Carbon\Carbon;
+
 class ArticleController extends Controller
 {
-    public function index(){
-        $articles = Article::all();
-        $articles = Article::paginate(5);
-        return view('article.index',['articles'=>$articles]);
+    public function index()
+    {
+        $articles = (new Article)->getArticleList();
+        return view('article.index')->with('articles', $articles);
     }
 
-    public function rank(Request $request){
-        
-        $rank_scope_date = Carbon::now()->subDay(3); //3日前の日付取得
-        $articles = Article::where('report_count','<',10)
-                ->where('category','normal')
-                ->where('created_at', '>=', $rank_scope_date)
-                ->where('delete_flag',0)
-                ->orderBy('like_count','desc')
-                ->take(3)
-                ->get();
+    public function rank()
+    {
+        $articles = (new Article)->getArticleRankList();
         return view('article.rank',['articles'=>$articles]);
     }
-
-    public function post_history(){
-        $user = Auth::user();
-        $articles = Article::where('user_id',$user->id)->get();
-        return view('article.post_history',['articles'=>$articles, 'user'=>$user]);
-    }
     
-    public function index2(Request $request){
-        $user = Auth::user();
-        $sort = $request->sort;
-        $articles = Article::paginate(10);
-        return view('page.index',['articles'=>$articles, 'user'=>$user]);
-    }
-    
-    public function search(){
-        return view('article.search');
-    }
-
     public function result(Request $request){
         $keyword = $request->keyword;
         $articles = Article::where('body', 'like', '%' . $keyword . '%')
@@ -54,38 +31,17 @@ class ArticleController extends Controller
     
     public function create(){
         $user = Auth::user();
-        return view('article.create',['user'=>$user]);
+        return view('article.create')->with('user', $user);
     }
     
-    public function confirm(Request $request)
-    {
-        $validatedData = $request->validate([
-            'job' => 'required|max:60',
-            'body' => 'required',
-        ]);
-        
-        $article = new Article;
-        $article->job = $request->job;
-        $article->body = $request->body;
-        $article->user_id = $request->user_id;
-        
-        return view('article.confirm')->with('article', $article);
-    }
-
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'job' => 'required|max:60',
-            'body' => 'required',
-        ]);
-        
         $article = new Article;
-        $article->job = $request->job;
         $article->body = $request->body;
-        $article->user_id = $request->user_id;
-        //$article->save();
+        $article->user_id = Auth::user()->id;
+        $article->save();
         
-        return view('article.store')->with('article', $article);
+        return view('article.store');
     }
     
     public function edit(Request $request, $id){

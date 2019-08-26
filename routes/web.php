@@ -65,5 +65,3 @@ Route::get('/goutte', function() {
    });
    return view('welcome');
 });
-
-*/
