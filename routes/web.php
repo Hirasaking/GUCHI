@@ -9,7 +9,8 @@ Route::get('rank', 'ArticleController@rank');
 Route::get('post_history', 'ArticleController@post_history')->middleware('auth');
 
 Route::get('create', 'ArticleController@create');
-Route::post('create', 'ArticleController@store');
+Route::post('create', 'ArticleController@confirm');
+Route::post('store', 'ArticleController@store');
 
 Route::get('edit/{id}', 'ArticleController@edit');
 Route::post('edit', 'ArticleController@update');

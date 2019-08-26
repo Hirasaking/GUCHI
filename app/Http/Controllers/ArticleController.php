@@ -57,20 +57,35 @@ class ArticleController extends Controller
         return view('article.create',['user'=>$user]);
     }
     
-    public function store(Request $request)
+    public function confirm(Request $request)
     {
         $validatedData = $request->validate([
             'job' => 'required|max:60',
             'body' => 'required',
-            ]);
+        ]);
         
         $article = new Article;
         $article->job = $request->job;
         $article->body = $request->body;
         $article->user_id = $request->user_id;
-        $article->save();
         
-        return view('article.store');
+        return view('article.confirm')->with('article', $article);
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'job' => 'required|max:60',
+            'body' => 'required',
+        ]);
+        
+        $article = new Article;
+        $article->job = $request->job;
+        $article->body = $request->body;
+        $article->user_id = $request->user_id;
+        //$article->save();
+        
+        return view('article.store')->with('article', $article);
     }
     
     public function edit(Request $request, $id){

@@ -7,11 +7,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body class="p-3">
-    <h1>ブログ新規追加完了</h1>
- <p>
-    送られてきた変数は{{$article->job}}
-</p>
-    <div class="alert alert-primary" role="alert">
+    <h1>投稿確認</h1>
+
+    <form method="post" action="/store">
+      {{ csrf_field() }}
+      <div class="form-group">
+        <label for="jobInput">職業</label>
+        <input type="text" class="form-control" id="jobInput" name="job" value="{{$article->job}}" disabled="disabled">
+      </div>
+      <div class="form-group">
+        <label for="bodyInput">内容</label>
+        <input type="text" class="form-control" id="jobInput" rows="3" name="job" value="{{$article->body}}" disabled="disabled">
+      </div>
+      <button type="submit" class="btn btn-primary">投稿する</button>
+    </form>
+
+
+<div class="alert alert-primary" role="alert">
       新規追加しました。
       <a href="/" class="btn btn-primary">一覧に戻る</a>
     </div>
