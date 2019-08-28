@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body class="p-3">
+    <h1>入力画面</h1>
       
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -18,8 +19,12 @@
     </div>
     @endif
 
-    <form method="post" action="/create">
+    <form method="post" action="confirm">
       {{ csrf_field() }}
+      <div class="form-group">
+        <label for="jobInput">職業</label>
+        <textarea class="form-control" id="jobInput" rows="3" name="job"></textarea>
+      </div>
       <div class="form-group">
         <label for="bodyInput">内容</label>
         <textarea class="form-control" id="bodyInput" rows="3" name="body"></textarea>

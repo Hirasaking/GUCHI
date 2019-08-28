@@ -34,11 +34,21 @@ class ArticleController extends Controller
         return view('article.create')->with('user', $user);
     }
     
+    public function confirm(Request $request)
+    {
+        $article = new Article;
+        $article->job = $request->job;
+        $article->body = $request->body;
+        
+        return view('article.confirm')->with('article', $article);
+    }
+
     public function store(Request $request)
     {
         $article = new Article;
+        $article->job = $request->job;
         $article->body = $request->body;
-        $article->user_id = Auth::user()->id;
+        //$article->user_id = Auth::user()->id;
         $article->save();
         
         return view('article.store');
