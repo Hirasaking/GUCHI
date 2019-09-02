@@ -1775,6 +1775,8 @@ return array(
     'NunoMaduro\\Collision\\Highlighter' => $vendorDir . '/nunomaduro/collision/src/Highlighter.php',
     'NunoMaduro\\Collision\\Provider' => $vendorDir . '/nunomaduro/collision/src/Provider.php',
     'NunoMaduro\\Collision\\Writer' => $vendorDir . '/nunomaduro/collision/src/Writer.php',
+    'Olssonm\\VeryBasicAuth\\Http\\Middleware\\VeryBasicAuth' => $vendorDir . '/olssonm/l5-very-basic-auth/src/Http/Middleware/VeryBasicAuth.php',
+    'Olssonm\\VeryBasicAuth\\VeryBasicAuthServiceProvider' => $vendorDir . '/olssonm/l5-very-basic-auth/src/VeryBasicAuthServiceProvider.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/Framework/AssertionFailedError.php',

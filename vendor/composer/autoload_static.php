@@ -85,6 +85,10 @@ class ComposerStaticInitd269200272da4dceeebc3e3989a3e473
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
         ),
+        'O' => 
+        array (
+            'Olssonm\\VeryBasicAuth\\' => 22,
+        ),
         'N' => 
         array (
             'NunoMaduro\\Collision\\' => 21,
@@ -296,6 +300,10 @@ class ComposerStaticInitd269200272da4dceeebc3e3989a3e473
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Olssonm\\VeryBasicAuth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/olssonm/l5-very-basic-auth/src',
         ),
         'NunoMaduro\\Collision\\' => 
         array (
@@ -2181,6 +2189,8 @@ class ComposerStaticInitd269200272da4dceeebc3e3989a3e473
         'NunoMaduro\\Collision\\Highlighter' => __DIR__ . '/..' . '/nunomaduro/collision/src/Highlighter.php',
         'NunoMaduro\\Collision\\Provider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Provider.php',
         'NunoMaduro\\Collision\\Writer' => __DIR__ . '/..' . '/nunomaduro/collision/src/Writer.php',
+        'Olssonm\\VeryBasicAuth\\Http\\Middleware\\VeryBasicAuth' => __DIR__ . '/..' . '/olssonm/l5-very-basic-auth/src/Http/Middleware/VeryBasicAuth.php',
+        'Olssonm\\VeryBasicAuth\\VeryBasicAuthServiceProvider' => __DIR__ . '/..' . '/olssonm/l5-very-basic-auth/src/VeryBasicAuthServiceProvider.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/AssertionFailedError.php',
