@@ -8,8 +8,8 @@
   </head>
   <body class="p-3">
     <h1>投稿確認</h1>
-
-    <form method="post" action="/store">
+{{$article}}
+    <form method="post" action="/update">
       {{ csrf_field() }}
       <div class="form-group">
         <label for="jobInput">職業</label>
@@ -17,7 +17,7 @@
       </div>
       <div class="form-group">
         <label for="bodyInput">内容</label>
-        <input type="text" class="form-control" id="jobInput" rows="3" name="job" value="{{$article->body}}" disabled="disabled">
+        <input type="text" class="form-control" id="jobInput" name="body" rows="3" value="{{$article->body}}" disabled="disabled">
       </div>
       <button type="submit" class="btn btn-primary">投稿する</button>
     </form>

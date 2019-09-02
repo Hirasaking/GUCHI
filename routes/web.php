@@ -10,7 +10,8 @@ Route::get('post_history', 'ArticleController@post_history')->middleware('auth')
 
 Route::get('create', 'ArticleController@create');
 Route::post('confirm', 'ArticleController@confirm');
-Route::post('store', 'ArticleController@store');
+Route::post('update', 'ArticleController@update');
+Route::post('complete', 'ArticleController@complete');
 
 Route::get('edit/{id}', 'ArticleController@edit');
 Route::post('edit', 'ArticleController@update');

@@ -30,8 +30,8 @@ class ArticleController extends Controller
     }
     
     public function create(){
-        $user = Auth::user();
-        return view('article.create')->with('user', $user);
+//        $user = Auth::user();
+        return view('article.create');
     }
     
     public function confirm(Request $request)
@@ -39,19 +39,27 @@ class ArticleController extends Controller
         $article = new Article;
         $article->job = $request->job;
         $article->body = $request->body;
+        $article->save();
         
-        return view('article.confirm')->with('article', $article);
+        return view('article.complete');
     }
 
-    public function store(Request $request)
+    public function update(Request $request)
     {
         $article = new Article;
         $article->job = $request->job;
         $article->body = $request->body;
+        
+        var_dump($article);exit;
         //$article->user_id = Auth::user()->id;
         $article->save();
         
-        return view('article.store');
+        return redirect()->route('article.complete');
+    }
+
+    public function complete()
+    {
+        return view('article.complete');
     }
     
     public function edit(Request $request, $id){
@@ -64,12 +72,12 @@ class ArticleController extends Controller
         return view('article.edit_report',['article'=>$article]);
     }
     
-    public function update(Request $request){
-        $article = Article::find($request->id);
-        $article->like_count += 1;
-        $article->save();
-        return view('article.update');
-    }
+//    public function update(Request $request){
+//        $article = Article::find($request->id);
+//        $article->like_count += 1;
+//        $article->save();
+//        return view('article.update');
+//    }
 
     public function report(Request $request){
         $article = Article::find($request->id);
