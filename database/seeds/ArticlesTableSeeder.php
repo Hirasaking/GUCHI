@@ -16,18 +16,18 @@ class ArticlesTableSeeder extends Seeder
         DB::table('articles')->insert([
         [
             'user_id'   => '1',
+            'job'   => '学生',
             'body'      => '投稿された本文１',
-            'category'  => 'company',
         ],
         [
             'user_id'   => '2',
+            'job'   => 'サラリーマン',
             'body'      => '投稿された本文',
-            'category'  => 'shop',
         ],
         [
             'user_id'   => '3',
+            'job'   => 'やさっぐれ主婦',
             'body'      => '投稿された本文',
-            'category'  => 'school',
         ],
       ]);
     }
