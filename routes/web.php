@@ -41,31 +41,4 @@ Route::group(['middleware' => 'auth.very_basic'], function() {
        });
        return view('welcome');
     });
-
-});
-
-/*
-
-Route::get('/', 'ArticleController@index');
-Route::get('create', 'ArticleController@create');
-Route::post('create', 'ArticleController@store');
-Route::get('edit/{id}', 'ArticleController@edit');
-Route::post('edit', 'ArticleController@update');
-Route::get('delete/{id}', 'ArticleController@show');
-Route::post('delete', 'ArticleController@delete');
-
-Route::get('page', 'ArticleController@index2')->middleware('auth');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/goutte', function() {
-   $crawler = Goutte::request('GET', 'http://www.uplink.co.jp/movie-show/nowshowing');
-
-   $crawler->filter('article.post h2 a')->each(function ($node) {
-     echo $node->text();
-     echo '<br/>';
-   });
-   return view('welcome');
 });
