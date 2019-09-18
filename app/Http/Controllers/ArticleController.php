@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\Article;
 use App\Http\Requests\UsersRequest;
 use Carbon\Carbon;
+use Validator;
 
 class ArticleController extends Controller
 {
@@ -35,8 +36,19 @@ class ArticleController extends Controller
         return view('article.create');
     }
     
-    public function confirm(UsersRequest $request)
+    public function confirm(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'job'  => 'required',
+            'body' => 'required',
+        ]);
+        
+        if($validator->fails()){
+            return redirect('/')
+            ->withErrors($validator)
+                ->withInput();
+        }
+        
         $article = new Article;
         $article->job = $request->job;
         $article->body = $request->body;
@@ -46,6 +58,17 @@ class ArticleController extends Controller
         
         return view('article.complete');
     }
+//    public function confirm(UsersRequest $request)
+//    {
+//        $article = new Article;
+//        $article->job = $request->job;
+//        $article->body = $request->body;
+////        $post->image_url = $request->image_url->storeAs('public/post_images',
+////            $time.'_'.Auth::user()->id . '.jpg');
+//        $article->save();
+//        
+//        return view('article.complete');
+//    }
 
     public function update(Request $request)
     {
