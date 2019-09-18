@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('job');
             $table->string('body');
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Article;
+use App\Http\Requests\UsersRequest;
 use Carbon\Carbon;
 
 class ArticleController extends Controller
@@ -34,11 +35,13 @@ class ArticleController extends Controller
         return view('article.create');
     }
     
-    public function confirm(Request $request)
+    public function confirm(UsersRequest $request)
     {
         $article = new Article;
         $article->job = $request->job;
         $article->body = $request->body;
+//        $post->image_url = $request->image_url->storeAs('public/post_images',
+//            $time.'_'.Auth::user()->id . '.jpg');
         $article->save();
         
         return view('article.complete');

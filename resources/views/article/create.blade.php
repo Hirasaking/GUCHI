@@ -25,6 +25,9 @@
         <label for="jobInput">職業</label>
         <textarea class="form-control" id="jobInput" rows="3" name="job"></textarea>
       </div>
+      <div class="form-image_url">
+        <input type="file" name="image_url"> 
+      </div>
       <div class="form-group">
         <label for="bodyInput">内容</label>
         <textarea class="form-control" id="bodyInput" rows="3" name="body"></textarea>
