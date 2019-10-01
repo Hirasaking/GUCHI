@@ -21,7 +21,7 @@ class ArticleController extends Controller
         $articles = (new Article)->getArticleRankList();
         return view('article.rank',['articles'=>$articles]);
     }
-    
+
     public function result(Request $request){
         $keyword = $request->keyword;
         $articles = Article::where('body', 'like', '%' . $keyword . '%')
@@ -30,34 +30,49 @@ class ArticleController extends Controller
         $data = Article::paginate(10);
         return view('article.result',['articles'=>$articles]);
     }
-    
+
     public function create(){
-//        $user = Auth::user();
+        //ユーザ情報の取得
+        //$user = Auth::user();
         return view('article.create');
     }
-    
-    public function confirm(Request $request)
-    {
-        $validator = Validator::make($request->all(),[
-            'job'  => 'required',
-            'body' => 'required',
+
+    public function confirm(Request $request){
+        $article = new Article($request->all());
+
+        $this->validate($request, [
+            'job'   => 'required|max:100',
+            'body'  => 'required|max:200',
         ]);
-        
-        if($validator->fails()){
-            return redirect('/')
-            ->withErrors($validator)
-                ->withInput();
-        }
-        
-        $article = new Article;
-        $article->job = $request->job;
-        $article->body = $request->body;
-//        $post->image_url = $request->image_url->storeAs('public/post_images',
-//            $time.'_'.Auth::user()->id . '.jpg');
-        $article->save();
-        
-        return view('article.complete');
+
+        //セッションに追加
+        $request->session()->put('article', $article);
+
+        return view('article.confirm', compact('article'));
     }
+
+//     public function confirm(Request $request)
+//     {
+//         $validator = Validator::make($request->all(),[
+//             'job'  => 'required',
+//             'body' => 'required',
+//         ]);
+//
+//         if($validator->fails()){
+//             return redirect('/')
+//             ->withErrors($validator)
+//                 ->withInput();
+//         }
+//
+//         $article = new Article;
+//         $article->job = $request->job;
+//         $article->body = $request->body;
+// //        $post->image_url = $request->image_url->storeAs('public/post_images',
+// //            $time.'_'.Auth::user()->id . '.jpg');
+//         $article->save();
+//
+//         return view('article.complete');
+//     }
 //    public function confirm(UsersRequest $request)
 //    {
 //        $article = new Article;
@@ -66,28 +81,29 @@ class ArticleController extends Controller
 ////        $post->image_url = $request->image_url->storeAs('public/post_images',
 ////            $time.'_'.Auth::user()->id . '.jpg');
 //        $article->save();
-//        
+//
 //        return view('article.complete');
 //    }
 
     public function update(Request $request)
     {
-        $article = new Article;
-        $article->job = $request->job;
-        $article->body = $request->body;
-        
-        var_dump($article);exit;
-        //$article->user_id = Auth::user()->id;
+        //セッションから取得
+        $article = $request->session->get('article');
+
+        //DBの更新
         $article->save();
-        
-        return redirect()->route('article.complete');
+
+        return redirect('article.complete');
     }
 
     public function complete()
     {
-        return view('article.complete');
+        //セッションから取得
+        $article = $request->session()->get('article');
+
+        return view('article.complete', compact('article'));
     }
-    
+
     public function edit(Request $request, $id){
         $article = Article::find($id);
         return view('article.edit',['article'=>$article]);
@@ -97,7 +113,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
         return view('article.edit_report',['article'=>$article]);
     }
-    
+
 //    public function update(Request $request){
 //        $article = Article::find($request->id);
 //        $article->like_count += 1;
@@ -111,12 +127,12 @@ class ArticleController extends Controller
         $article->save();
         return view('article.update');
     }
-    
+
     public function show(Request $request, $id) {
         $article = Article::find($id);
         return view('article.show', ['article' => $article]);
     }
- 
+
     public function delete(Request $request) {
         Article::destroy($request->id);
         return view('article.delete');

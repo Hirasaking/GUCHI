@@ -7,11 +7,14 @@ use Carbon\Carbon;
 
 class Article extends Model
 {
+
+    protected $fillable = ['job', 'body'];
+
     public function getArticleList()
     {
         return Article::paginate(5);
     }
-    
+
     public function getArticleRankList()
     {
         return Article::select(

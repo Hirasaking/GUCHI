@@ -8,7 +8,7 @@
   </head>
   <body class="p-3">
     <h1>入力画面</h1>
-      
+
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -19,14 +19,14 @@
     </div>
     @endif
 
-    <form method="post" action="confirm">
+    <form method="post" action="article/confirm">
       {{ csrf_field() }}
       <div class="form-group">
         <label for="jobInput">職業</label>
         <textarea class="form-control" id="jobInput" rows="3" name="job"></textarea>
       </div>
       <div class="form-image_url">
-        <input type="file" name="image_url"> 
+        <input type="file" name="image_url">
       </div>
       <div class="form-group">
         <label for="bodyInput">内容</label>
