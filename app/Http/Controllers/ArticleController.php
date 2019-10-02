@@ -88,15 +88,15 @@ class ArticleController extends Controller
     public function update(Request $request)
     {
         //セッションから取得
-        $article = $request->session->get('article');
+        $article = $request->session()->get('article');
 
         //DBの更新
         $article->save();
 
-        return redirect('article.complete');
+        return redirect('article/complete');
     }
 
-    public function complete()
+    public function complete(Request $request)
     {
         //セッションから取得
         $article = $request->session()->get('article');
