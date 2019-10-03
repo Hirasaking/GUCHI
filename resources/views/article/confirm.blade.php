@@ -9,14 +9,14 @@
   <body class="p-3">
     <h1>投稿確認</h1>
 
+    <div>職業：{{$article->job}}</div>
+    <div>本文：{{$article->body}}</div>
+    <a href="/create" class="btn btn-primary">入力画面に戻る</a>
+
     <form method="post" action="{{action('ArticleController@update')}}">
       {{ csrf_field() }}
-      <div>JOB ：{{$article->job}}</div>
-      <div>BODY：{{$article->body}}</div>
       <input value="送信" type="submit" class="btn btn-primary">
     </form>
-
-    <a href="/" class="btn btn-primary">一覧に戻る</a>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
