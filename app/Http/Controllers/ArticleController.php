@@ -37,13 +37,8 @@ class ArticleController extends Controller
         return view('article.create');
     }
 
-    public function confirm(Request $request){
+    public function confirm(UsersRequest $request){
         $article = new Article($request->all());
-
-        $this->validate($request, [
-            'job'   => 'required|max:100',
-            'body'  => 'required|max:200',
-        ]);
 
         //セッションに追加
         $request->session()->put('article', $article);

@@ -29,10 +29,10 @@ class UsersRequest extends FormRequest
     public function messages()
     {
         return[
-            'job.required' => '仕事は入力必須です', 
-            'body.required' => '内容は入力必須です', 
+            'job.required' => '職業は入力必須です', 
+            'body.required' => '内容は入力必須です',
         ];
     }
-    
-    
+
+
     }
