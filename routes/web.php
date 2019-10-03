@@ -2,19 +2,20 @@
 
 Route::get('logout', 'ArticleController@index');
 
-//BASIC認証
-Route::group(['middleware' => 'auth.very_basic'], function() {
-
     Route::get('/', 'ArticleController@index');
     Route::get('rank', 'ArticleController@rank');
 
     Route::get('post_history', 'ArticleController@post_history')->middleware('auth');
+
+//BASIC認証
+Route::group(['middleware' => 'auth.very_basic'], function() {
 
     //新規投稿部分
     Route::get ('create'            , 'ArticleController@create');
     Route::post('article/confirm'   , 'ArticleController@confirm');
     Route::post('article/update'    , 'ArticleController@update');
     Route::get ('article/complete'  , 'ArticleController@complete');
+});
 
     Route::get('edit/{id}', 'ArticleController@edit');
     Route::post('edit', 'ArticleController@update');
@@ -43,4 +44,3 @@ Route::group(['middleware' => 'auth.very_basic'], function() {
        });
        return view('welcome');
     });
-});
