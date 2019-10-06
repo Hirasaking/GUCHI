@@ -19,9 +19,6 @@
     <td class="table-secondary">本文</td>
     <td>{{ $article->body }}</td>
     </tr>
-    <tr>
-    <td class="table-secondary">メッセージ</td>
-    </tr>
     </table>
 
     <form action="update" method="post">

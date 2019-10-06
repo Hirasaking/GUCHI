@@ -40,7 +40,16 @@
 -->
       <div class="form-group">
           <label for="bodyInput">内容</label>
-          <textarea type='text' name="body" id="InputBody" class="form-control" rows="3" value="{{ old('body') }}">{{ old('body') }}</textarea>
+          @if ($errors->has('content'))
+              @foreach($errors->get('content') as $content_error)
+              <ul>
+                  <li>
+                      {{ $content_error }}
+                  </li>
+              </ul>
+              @endforeach
+           @endif
+           <textarea type='text' name="body" id="InputBody" class="form-control" rows="3">{{ old('body') }}</textarea>
       </div>
       @csrf
       <button type="submit" class="btn btn-primary">投稿する</button>

@@ -55,13 +55,17 @@ class ArticleController extends Controller
 
     public function update(UsersRequest $request)
     {
+        //リクエスト取得
         $contact = $request->all();
-        //var_dump($request->session());exit;
+
         //戻るボタンからの遷移
         if($request->action === 'back') {
             return redirect()->route('create')->withInput($contact);
+            //return redirect()->route('create', compact('contact'));
         }
 
+        //戻る以外なら保存処理準備
+        $article = new Article($request->all());
         $request->session()->regenerateToken();
 
         //DBの更新
@@ -70,10 +74,7 @@ class ArticleController extends Controller
         // //セッションから取得
         // $article = $request->session()->get('article');
         //
-        // //DBの更新
-        // $article->save();
-        //
-        // return redirect('article/complete');
+         return redirect('article/complete');
     }
 
     public function complete(Request $request)
