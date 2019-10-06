@@ -9,13 +9,15 @@ Route::get('logout', 'ArticleController@index');
 
 //BASIC認証
 Route::group(['middleware' => 'auth.very_basic'], function() {
+});
 
+//投稿フォームページ
+Route::group(['middleware' => 'auth'], function() {
     //新規投稿部分
     Route::get ('create'            , 'ArticleController@create')->name('create');
     Route::post('article/confirm'   , 'ArticleController@confirm')->name('confirm');
     Route::post('article/update'    , 'ArticleController@update')->name('update');
     Route::get ('article/complete'  , 'ArticleController@complete')->name('complete');
-
 });
 
     Route::get('edit/{id}', 'ArticleController@edit');
