@@ -19,26 +19,24 @@
     </div>
     @endif
 
-    <form method="post" action="article/confirm">
-      {{ csrf_field() }}
+    <form action="/article/confirm" method="post">
       <div class="form-group">
-        <label for="jobInput">職業</label>
-        <textarea class="form-control" id="jobInput" rows="3" name="job"></textarea>
+          <label for="jobInput">職業</label>
+          <input type="text" name="job" class="form-control" id="InputJob" value="{{ old('job') }}">
       </div>
+<!--
       <div class="form-image_url">
-        <input type="file" name="image_url">
+          <input type="file" name="image_url">
       </div>
+-->
       <div class="form-group">
-        <label for="bodyInput">内容</label>
-        <textarea class="form-control" id="bodyInput" rows="3" name="body"></textarea>
+          <label for="bodyInput">内容</label>
+          <textarea name="body" id="InputBody" class="form-control" rows="3" value="{{ old('body') }}"></textarea>
       </div>
+      @csrf
       <button type="submit" class="btn btn-primary">投稿する</button>
     </form>
 
     <a href="/" class="btn btn-primary">一覧に戻る</a>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   </body>
 </html>

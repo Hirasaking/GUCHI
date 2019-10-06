@@ -7,15 +7,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body class="p-3">
-    <h1>投稿確認</h1>
+    <h1>投稿内容</h1>
 
-    <div>職業：{{$article->job}}</div>
-    <div>本文：{{$article->body}}</div>
-    <a href="/create" class="btn btn-primary">入力画面に戻る</a>
+    <p>よろしければ「送信」ボタンを押して下さい。</p>
+    <table class="table table-bordered">
+    <tr>
+    <td class="table-secondary" style="width:20%">職業</td>
+    <td>{{ $article->job }}</td>
+    </tr>
+    <tr>
+    <td class="table-secondary">本文</td>
+    <td>{{ $article->body }}</td>
+    </tr>
+    <tr>
+    <td class="table-secondary">メッセージ</td>
+    </tr>
+    </table>
 
-    <form method="post" action="{{action('ArticleController@update')}}">
-      {{ csrf_field() }}
-      <input value="送信" type="submit" class="btn btn-primary">
+    <form action="update" method="post">
+        <input type="hidden" name="job" class="form-control" id="InputJob" value="{{ $article->job }}">
+        <input type="hidden" name="body" class="form-control" id="InputBody" value="{{ $article->body }}">
+        @csrf
+        <button type="submit" name="action" class="btn btn-primary" value="back">戻る</button>
+        <button type="submit" name="action" class="btn btn-primary" value="sent">送信</button>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

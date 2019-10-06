@@ -11,10 +11,11 @@ Route::get('logout', 'ArticleController@index');
 Route::group(['middleware' => 'auth.very_basic'], function() {
 
     //新規投稿部分
-    Route::get ('create'            , 'ArticleController@create');
-    Route::post('article/confirm'   , 'ArticleController@confirm');
-    Route::post('article/update'    , 'ArticleController@update');
-    Route::get ('article/complete'  , 'ArticleController@complete');
+    Route::get ('create'            , 'ArticleController@create')->name('create');
+    Route::post('article/confirm'   , 'ArticleController@confirm')->name('confirm');
+    Route::post('article/update'    , 'ArticleController@update')->name('update');
+    Route::get ('article/complete'  , 'ArticleController@complete')->name('complete');
+
 });
 
     Route::get('edit/{id}', 'ArticleController@edit');

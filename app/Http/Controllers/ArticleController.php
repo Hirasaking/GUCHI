@@ -38,57 +38,42 @@ class ArticleController extends Controller
     }
 
     public function confirm(UsersRequest $request){
+
+        //リクエストの内容を元にオブジェクト生成
         $article = new Article($request->all());
 
+        //$article = $request->all();
+        //var_dump($article);exit;
+
+        $request->session()->regenerateToken();
+
         //セッションに追加
-        $request->session()->put('article', $article);
+        //$request->session()->put('article', $article);
 
         return view('article.confirm', compact('article'));
     }
 
-//     public function confirm(Request $request)
-//     {
-//         $validator = Validator::make($request->all(),[
-//             'job'  => 'required',
-//             'body' => 'required',
-//         ]);
-//
-//         if($validator->fails()){
-//             return redirect('/')
-//             ->withErrors($validator)
-//                 ->withInput();
-//         }
-//
-//         $article = new Article;
-//         $article->job = $request->job;
-//         $article->body = $request->body;
-// //        $post->image_url = $request->image_url->storeAs('public/post_images',
-// //            $time.'_'.Auth::user()->id . '.jpg');
-//         $article->save();
-//
-//         return view('article.complete');
-//     }
-//    public function confirm(UsersRequest $request)
-//    {
-//        $article = new Article;
-//        $article->job = $request->job;
-//        $article->body = $request->body;
-////        $post->image_url = $request->image_url->storeAs('public/post_images',
-////            $time.'_'.Auth::user()->id . '.jpg');
-//        $article->save();
-//
-//        return view('article.complete');
-//    }
-
-    public function update(Request $request)
+    public function update(UsersRequest $request)
     {
-        //セッションから取得
-        $article = $request->session()->get('article');
+        $contact = $request->all();
+        //var_dump($request->session());exit;
+        //戻るボタンからの遷移
+        if($request->action === 'back') {
+            return redirect()->route('create')->withInput($contact);
+        }
+
+        $request->session()->regenerateToken();
 
         //DBの更新
         $article->save();
 
-        return redirect('article/complete');
+        // //セッションから取得
+        // $article = $request->session()->get('article');
+        //
+        // //DBの更新
+        // $article->save();
+        //
+        // return redirect('article/complete');
     }
 
     public function complete(Request $request)
