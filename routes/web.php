@@ -20,10 +20,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get ('article/complete'  , 'ArticleController@complete')->name('complete');
 });
 
+//検索
+Route::get('search', 'SearchController@create');
+
+
     Route::get('edit/{id}', 'ArticleController@edit');
     Route::post('edit', 'ArticleController@update');
 
-    Route::get('search', 'ArticleController@search');
     Route::get('result', 'ArticleController@result');
 
     Route::get('report/{id}', 'ArticleController@edit_report');
