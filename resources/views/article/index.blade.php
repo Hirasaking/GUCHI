@@ -5,10 +5,7 @@
 
     <p>
         <a href="/create" class="btn btn-primary">投稿する</a>
-        <a href="/post_history" class="btn btn-primary">自分の投稿一覧</a>
-        <a href="/rank" class="btn btn-primary">ランキング</a>
         <a href="/search" class="btn btn-primary">検索する</a>
-        <a href="/page" class="btn btn-primary">会員専用</a>
         <a href="/login" class="btn btn-primary">ログイン</a>
         <a href="/logout" class="btn btn-primary">ログアウト</a>
         <a href="/register" class="btn btn-primary">新規登録</a>
@@ -32,7 +29,7 @@
             <input type="hidden" class="form-control" name="id" value="{{ $article->id }}">
             <button type="submit" class="btn btn-primary">共感 {{ $article->like_count }}</button>
             </form>
-        
+
         <?php //<a href="/delete/{{ $article->id }}" class="card-link">削除</a> ?>
       </div>
     </div>

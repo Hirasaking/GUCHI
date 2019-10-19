@@ -16,34 +16,40 @@ class ArticleController extends Controller
         return view('article.index')->with('articles', $articles);
     }
 
+    // 人気のある投稿ランキング
     public function rank()
     {
         $articles = (new Article)->getArticleRankList();
-        return view('article.rank',['articles'=>$articles]);
+        return view('article.rank', ['articles'=>$articles]);
     }
 
-    public function result(Request $request){
+    // 検索機能関連
+    public function search(){
+        return view('article.search');
+    }
+
+    // 検索結果
+    public function searchresult(Request $request){
         $keyword = $request->keyword;
+
         $articles = Article::where('body', 'like', '%' . $keyword . '%')
                 ->orWhere('job', 'like', '%' . $keyword . '%')
                 ->get();
         $data = Article::paginate(10);
-        return view('article.result',['articles'=>$articles]);
+        return view('article.result', ['articles'=>$articles]);
     }
 
+    // 投稿関連機能
     public function create(){
-        //ユーザ情報の取得
-        //$user = Auth::user();
+        // ユーザ情報の取得 今は使ってない
+        $user = Auth::user();
         return view('article.create');
     }
 
     public function confirm(UsersRequest $request){
 
-        //リクエストの内容を元にオブジェクト生成
+        // リクエストの内容を元にオブジェクト生成
         $article = new Article($request->all());
-
-        //$article = $request->all();
-        //var_dump($article);exit;
 
         $request->session()->regenerateToken();
 
@@ -53,6 +59,7 @@ class ArticleController extends Controller
         return view('article.confirm', compact('article'));
     }
 
+    //投稿内容の更新処理
     public function update(UsersRequest $request)
     {
         //リクエスト取得
@@ -81,7 +88,6 @@ class ArticleController extends Controller
     {
         //セッションから取得
         $article = $request->session()->get('article');
-
         return view('article.complete', compact('article'));
     }
 
@@ -94,13 +100,6 @@ class ArticleController extends Controller
         $article = Article::find($id);
         return view('article.edit_report',['article'=>$article]);
     }
-
-//    public function update(Request $request){
-//        $article = Article::find($request->id);
-//        $article->like_count += 1;
-//        $article->save();
-//        return view('article.update');
-//    }
 
     public function report(Request $request){
         $article = Article::find($request->id);

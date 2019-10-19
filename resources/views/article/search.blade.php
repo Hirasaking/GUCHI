@@ -8,7 +8,7 @@
   </head>
   <body class="p-3">
     <h1>検索</h1>
- 
+
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -19,7 +19,7 @@
     </div>
     @endif
 
-    <form method="get" action="/result">
+    <form method="post" action="/search">
       {{ csrf_field() }}
       <div class="form-group">
         <input type="text" class="form-control" id="jobInput" name="keyword">

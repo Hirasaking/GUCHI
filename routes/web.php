@@ -1,10 +1,8 @@
 <?php
 
-Route::get('logout', 'ArticleController@index');
-
+    Route::get('logout', 'ArticleController@index');
     Route::get('/', 'ArticleController@index');
     Route::get('rank', 'ArticleController@rank');
-
     Route::get('post_history', 'ArticleController@post_history')->middleware('auth');
 
 //BASIC認証
@@ -13,21 +11,20 @@ Route::group(['middleware' => 'auth.very_basic'], function() {
 
 //投稿フォームページ
 Route::group(['middleware' => 'auth'], function() {
-    //新規投稿部分
-    Route::get ('create'            , 'ArticleController@create')->name('create');
+    //新規投稿関連
+    Route::get('create'            , 'ArticleController@create')->name('create');
     Route::post('article/confirm'   , 'ArticleController@confirm')->name('confirm');
     Route::post('article/update'    , 'ArticleController@update')->name('update');
     Route::get ('article/complete'  , 'ArticleController@complete')->name('complete');
 });
 
-//検索
-Route::get('search', 'SearchController@create');
-
+    //検索関連
+    Route::get('search', 'ArticleController@search');
+    Route::post('search', 'ArticleController@searchresult');
 
     Route::get('edit/{id}', 'ArticleController@edit');
     Route::post('edit', 'ArticleController@update');
 
-    Route::get('result', 'ArticleController@result');
 
     Route::get('report/{id}', 'ArticleController@edit_report');
     Route::post('update_report', 'ArticleController@report');
