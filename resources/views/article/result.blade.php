@@ -8,7 +8,7 @@
   </head>
   <body class="p-3">
     <h1>の検索結果</h1>
- 
+
     @foreach ($articles as $item)
     <div class="card mb-2">
       <div style="border:solid 1px #bbb;">
@@ -27,18 +27,15 @@
             <input type="hidden" class="form-control" name="id" value="{{ $item->id }}">
             <button type="submit" class="btn btn-primary">共感 {{ $item->like_count }}</button>
             </form>
-        
+
         <?php //<a href="/delete/{{ $article->id }}" class="card-link">削除</a> ?>
       </div>
     </div>
     @endforeach
     <p><a href="/create" class="btn btn-primary">投稿する</a></p>
 
-    
-    
     <a href="/" class="btn btn-primary">一覧に戻る</a>
 
-    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

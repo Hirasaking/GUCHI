@@ -16,13 +16,6 @@ class ArticleController extends Controller
         return view('article.index')->with('articles', $articles);
     }
 
-    // 人気のある投稿ランキング
-    public function rank()
-    {
-        $articles = (new Article)->getArticleRankList();
-        return view('article.rank', ['articles'=>$articles]);
-    }
-
     // 検索機能関連
     public function search(){
         return view('article.search');
@@ -35,7 +28,7 @@ class ArticleController extends Controller
         $articles = Article::where('body', 'like', '%' . $keyword . '%')
                 ->orWhere('job', 'like', '%' . $keyword . '%')
                 ->get();
-        $data = Article::paginate(10);
+        $articles = Article::paginate(2);
         return view('article.result', ['articles'=>$articles]);
     }
 
@@ -89,6 +82,22 @@ class ArticleController extends Controller
         //セッションから取得
         $article = $request->session()->get('article');
         return view('article.complete', compact('article'));
+    }
+
+    public function history()
+    {
+        // ユーザidの取得
+        $user_id = Auth::id();
+
+        // ユーザidから投稿内容の取得
+        $articles = (new Article)->getArticleHistory($user_id);
+
+        //該当するデータが存在しない場合エラーを渡す
+        if(empty($article) || null){
+          //処理内容を追加する
+        }
+
+        return view('article.history')->with('articles', $articles);
     }
 
     public function edit(Request $request, $id){

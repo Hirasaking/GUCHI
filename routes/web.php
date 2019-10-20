@@ -3,7 +3,6 @@
     Route::get('logout', 'ArticleController@index');
     Route::get('/', 'ArticleController@index');
     Route::get('rank', 'ArticleController@rank');
-    Route::get('post_history', 'ArticleController@post_history')->middleware('auth');
 
 //BASIC認証
 Route::group(['middleware' => 'auth.very_basic'], function() {
@@ -13,9 +12,12 @@ Route::group(['middleware' => 'auth.very_basic'], function() {
 Route::group(['middleware' => 'auth'], function() {
     //新規投稿関連
     Route::get('create'            , 'ArticleController@create')->name('create');
-    Route::post('article/confirm'   , 'ArticleController@confirm')->name('confirm');
-    Route::post('article/update'    , 'ArticleController@update')->name('update');
-    Route::get ('article/complete'  , 'ArticleController@complete')->name('complete');
+    Route::post('article/confirm'  , 'ArticleController@confirm')->name('confirm');
+    Route::post('article/update'   , 'ArticleController@update')->name('update');
+    Route::get('article/complete'  , 'ArticleController@complete')->name('complete');
+
+    // 自分の投稿履歴表示
+    Route::get('history'   , 'ArticleController@history')->name('history');
 });
 
     //検索関連
