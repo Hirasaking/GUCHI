@@ -29,7 +29,7 @@ class ArticleController extends Controller
                 ->orWhere('job', 'like', '%' . $keyword . '%')
                 ->get();
         $articles = Article::paginate(2);
-        return view('article.result', ['articles'=>$articles]);
+        return view('article.result', compact('articles', 'keyword'));
     }
 
     // 投稿関連機能
@@ -92,9 +92,13 @@ class ArticleController extends Controller
         // ユーザidから投稿内容の取得
         $articles = (new Article)->getArticleHistory($user_id);
 
-        //該当するデータが存在しない場合エラーを渡す
-        if(empty($article) || null){
-          //処理内容を追加する
+        // 該当するデータが存在しない場合エラーを渡す
+        if(empty($article) || $article == null){
+          // 処理内容を追加する
+          // バリデーションを追加
+          $errors[] = "まだ投稿がありません。";
+
+          return view('article.history', compact('articles', 'errors'));
         }
 
         return view('article.history')->with('articles', $articles);
