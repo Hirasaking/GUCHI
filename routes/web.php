@@ -1,44 +1,11 @@
 <?php
+//https://qiita.com/shonansurvivors/items/561cfe9c2ae02da65bd4
 
-Route::get('logout', 'ArticleController@index');
-
-Route::group(['middleware' => 'auth.very_basic'], function() {
-    Route::get('/', 'ArticleController@index');
-
-    Route::get('rank', 'ArticleController@rank');
-
-    Route::get('post_history', 'ArticleController@post_history')->middleware('auth');
-
-    Route::get('create', 'ArticleController@create');
-    Route::post('confirm', 'ArticleController@confirm');
-    Route::post('update', 'ArticleController@update');
-    Route::post('complete', 'ArticleController@complete');
-
-    Route::get('edit/{id}', 'ArticleController@edit');
-    Route::post('edit', 'ArticleController@update');
-
-    Route::get('search', 'ArticleController@search');
-    Route::get('result', 'ArticleController@result');
-
-    Route::get('report/{id}', 'ArticleController@edit_report');
-    Route::post('update_report', 'ArticleController@report');
-
-    Route::get('delete/{id}', 'ArticleController@show');
-    Route::post('delete', 'ArticleController@delete');
-
-    Route::get('page', 'ArticleController@index2')->middleware('auth');
-
-    Auth::routes();
-
-    Route::get('/home', 'HomeController@index')->name('home');
-
-    Route::get('/goutte', function() {
-       $crawler = Goutte::request('GET', 'http://www.uplink.co.jp/movie-show/nowshowing');
-
-       $crawler->filter('article.post h2 a')->each(function ($node) {
-         echo $node->text();
-         echo '<br/>';
-       });
-       return view('welcome');
-    });
-});
+Route::get('/', 'ItemController@index')->name('index');
+Route::get('/items/create', 'ItemController@create')->name('create');
+Route::post('/items', 'ItemController@store')->name('store');
+Route::get('/items/{id}', 'ItemController@show')->name('show')->where('id', '[0-9]+');
+Route::get('/items/{id}/edit', 'ItemController@edit')->name('edit')->where('id', '[0-9]+');
+Route::patch('/items/{id}', 'ItemController@update')->name('update')->where('id', '[0-9]+');
+Route::get('/items/{item}/delete', 'ItemController@delete')->name('delete')->where('item', '[0-9]+'); //追加
+Route::delete('/items/{item}', 'ItemController@destroy')->name('destroy')->where('item', '[0-9]+');  //追加
