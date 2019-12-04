@@ -1,7 +1,18 @@
 <?php
 
+// アクセス時のルーティング
+Route::get('searchSample', 'SearchController@index');
+Route::post('searchSample', 'SearchController@store');
+
+// アクセス時のルーティング
+Route::get('sample/vali', 'ValiController@index');
+Route::post('sample/vali', 'ValiController@receiveData');
+
+
     Route::get('logout', 'ArticleController@index');
     Route::get('/', 'ArticleController@index');
+    Route::post('/', 'ArticleController@store');
+    // Route::post('/', 'ArticleController@store', function(SearchRequest $request){});
     Route::get('rank', 'ArticleController@rank');
 
 //BASIC認証

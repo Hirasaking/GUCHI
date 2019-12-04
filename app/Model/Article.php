@@ -4,16 +4,30 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Exception;
 
 class Article extends Model
 {
 
     protected $fillable = ['job', 'body'];
 
-    public function getArticleList()
+    public function getArticleList($request)
     {
-        return Article::paginate(3);
+        $id = $request->input('key_word1'); //1
+        $request->session()->get('search_code', 111);
+        $sessison = $request->get('search_code'); //111
+
+        return [$id, $session];
     }
+
+
+
+
+
+
+
 
     public function getArticleRankList()
     {

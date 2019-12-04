@@ -4,20 +4,43 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Article;
+use App\Http\Requests\SearchRequest;
 use App\Http\Requests\UsersRequest;
 use Carbon\Carbon;
 use Validator;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $articles = (new Article)->getArticleList();
+        echo 'running index';
+        // var_dump($request->session()->all());
+        // var_dump($request->session()->all());
+        $articles = (new Article)->getArticleList($request);
+        // var_dump($articles);
+        // flash session 延長
+        // $request->session()->reflash();
+        return view('article.index')->with('articles', $articles);
+    }
+
+    public function store(SearchRequest $request)
+    {
+
+        echo 'running store';
+        session()->flash('select_sample', $request->input('select_sample'));
+        // session()->flash('key_word1', $request->input('key_word1'));
+        // session()->flash('checkbox1', $request->input('checkbox1'));
+        // session()->flash('checkbox2', $request->input('checkbox2'));
+        // session()->flash('checkbox3', $request->input('checkbox3'));
+
+        // var_dump($request->input('key_word1'));exit;
+
+        $articles = (new Article)->getArticleList($request);
         return view('article.index')->with('articles', $articles);
     }
 
     // 検索機能関連
-    public function search(){
+    public function search(Request $request){
         return view('article.search');
     }
 
