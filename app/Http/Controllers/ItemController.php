@@ -6,6 +6,7 @@ use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\ItemRequest;
+use Exception;
 
 class ItemController extends Controller
 {
@@ -46,14 +47,29 @@ class ItemController extends Controller
       $items = $query->orderBy('created_at', 'desc')->get();
       */
 
+      // try catch
+      // $items = NULL;
+      //
+      // try {
+      //   if(!$items)
+      //   {
+      //     throw new Exception("例外の実行テスト");
+      //   }
+      // } catch (Exception $e) {
+      //     echo '捕捉した例外: ',  $e->getMessage(), "\n";
+      // } finally {
+      //   echo 'exception end';
+      //   exit;
+      // }
+
       $items = Item::nameFilter($request->name)
-          ->sexFilter($request->sex)
-          ->memoFilter($request->memo)
-          ->orderBy('created_at', 'desc')
-          //->get();
-          ->paginate(3)
-          ->appends($request->all());
-          //var_dump($items);exit;
+            ->sexFilter($request->sex)
+            ->memoFilter($request->memo)
+            ->orderBy('created_at2', 'desc')
+            //->get();
+            ->paginate(3)
+            ->appends($request->all());
+
       return view('items.index', [
           'items' => $items
       ]);

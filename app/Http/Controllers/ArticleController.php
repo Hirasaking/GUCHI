@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Article;
+use App\Http\Requests\UsersRequest;
 use Carbon\Carbon;
+use Validator;
 
 class ArticleController extends Controller
 {
@@ -14,54 +16,81 @@ class ArticleController extends Controller
         return view('article.index')->with('articles', $articles);
     }
 
+    // 人気のある投稿ランキング
     public function rank()
     {
         $articles = (new Article)->getArticleRankList();
-        return view('article.rank',['articles'=>$articles]);
+        return view('article.rank', ['articles'=>$articles]);
     }
-    
-    public function result(Request $request){
+
+    // 検索機能関連
+    public function search(){
+        return view('article.search');
+    }
+
+    // 検索結果
+    public function searchresult(Request $request){
         $keyword = $request->keyword;
+
         $articles = Article::where('body', 'like', '%' . $keyword . '%')
                 ->orWhere('job', 'like', '%' . $keyword . '%')
                 ->get();
         $data = Article::paginate(10);
-        return view('article.result',['articles'=>$articles]);
+        return view('article.result', ['articles'=>$articles]);
     }
-    
+
+    // 投稿関連機能
     public function create(){
-//        $user = Auth::user();
+        // ユーザ情報の取得 今は使ってない
+        $user = Auth::user();
         return view('article.create');
     }
-    
-    public function confirm(Request $request)
-    {
-        $article = new Article;
-        $article->job = $request->job;
-        $article->body = $request->body;
-        $article->save();
-        
-        return view('article.complete');
+
+    public function confirm(UsersRequest $request){
+
+        // リクエストの内容を元にオブジェクト生成
+        $article = new Article($request->all());
+
+        $request->session()->regenerateToken();
+
+        //セッションに追加
+        //$request->session()->put('article', $article);
+
+        return view('article.confirm', compact('article'));
     }
 
-    public function update(Request $request)
+    //投稿内容の更新処理
+    public function update(UsersRequest $request)
     {
-        $article = new Article;
-        $article->job = $request->job;
-        $article->body = $request->body;
-        
-        var_dump($article);exit;
-        //$article->user_id = Auth::user()->id;
+        //リクエスト取得
+        $contact = $request->all();
+
+        //戻るボタンからの遷移
+        if($request->action === 'back') {
+            return redirect()->route('create')->withInput($contact);
+            //return redirect()->route('create', compact('contact'));
+        }
+
+        //戻る以外なら保存処理準備
+        $article = new Article($request->all());
+        $request->session()->regenerateToken();
+
+        //DBの更新
         $article->save();
-        
-        return redirect()->route('article.complete');
+
+        // //セッションから取得
+        // $article = $request->session()->get('article');
+        //
+         return redirect('article/complete');
     }
 
-    public function complete()
+    public function complete(Request $request)
     {
-        return view('article.complete');
+        //セッションから取得
+        $article = $request->session()->get('article');
+        return view('article.complete', compact('article'));
     }
-    
+
     public function edit(Request $request, $id){
         $article = Article::find($id);
         return view('article.edit',['article'=>$article]);
@@ -71,13 +100,6 @@ class ArticleController extends Controller
         $article = Article::find($id);
         return view('article.edit_report',['article'=>$article]);
     }
-    
-//    public function update(Request $request){
-//        $article = Article::find($request->id);
-//        $article->like_count += 1;
-//        $article->save();
-//        return view('article.update');
-//    }
 
     public function report(Request $request){
         $article = Article::find($request->id);
@@ -85,12 +107,12 @@ class ArticleController extends Controller
         $article->save();
         return view('article.update');
     }
-    
+
     public function show(Request $request, $id) {
         $article = Article::find($id);
         return view('article.show', ['article' => $article]);
     }
- 
+
     public function delete(Request $request) {
         Article::destroy($request->id);
         return view('article.delete');

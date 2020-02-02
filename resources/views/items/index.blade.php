@@ -53,6 +53,11 @@
         </div>
       </div>
     </div>
+    @empty($items)
+      <li class="list-group-item">
+        対象のデータがありません
+      </li>
+    @endempty
 
     <div class="row" >
       <div class="col-12">

@@ -11,7 +11,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">アプリケーション名</a>
+    <a class="navbar-brand" href="/">{{ config('const.APPLICATION.NAME', 'Laravel') }}</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false"
             aria-label="ナビゲーションの切替">
       <span class="navbar-toggler-icon"></span>
@@ -21,11 +21,11 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <!-- TODO:リンク先追加 -->
-          <a class="nav-link" href="/admin">管理サイト</a>
+          <a class="nav-link" href="/admin">{{ config('const.DISPLAY_NAME.ADMIN_SITE') }}</a>
         </li>
         <li class="nav-item">
           <!-- TODO:リンク先追加 -->
-          <a class="nav-link" href="">ログアウト</a>
+          <a class="nav-link" href="">{{ config('const.DISPLAY_NAME.LOG_OUT') }}</a>
         </li>
       </ul>
     </div>
