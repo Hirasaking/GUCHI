@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// 投稿関連
+Route::get('article', 'ArticleController@index');
+Route::get('article-create', 'ArticleController@create');
+Route::get('article-confirm', 'ArticleController@confirm');
+Route::get('article-complete', 'ArticleController@complete');
