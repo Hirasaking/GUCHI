@@ -24,8 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('batch:test')
+                 ->everyMinute();
+
+        // クロージャに直接処理を書くことも可能
+        // $schedule->call(function () {
+        //     echo "hello!\n";
+        // });
     }
 
     /**
