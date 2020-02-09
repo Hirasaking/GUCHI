@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('category2')->nullable()->comment('カテゴリ2');
             $table->tinyInteger('category3')->nullable()->comment('カテゴリ3');
             $table->tinyInteger('category4')->nullable()->comment('カテゴリ4');
-            $table->tinyInteger('status')->default(0)->comment('ステータス 0:未登録 1:登録済 2:退会 3:BAN');
+            $table->tinyInteger('status')->default(0)->comment('ステータス');
             $table->timestamps();
             $table->softDeletes()->comment('論理削除日時');
         });
