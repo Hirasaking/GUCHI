@@ -14,12 +14,10 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->comment('管理番号');
+            $table->unsignedBigInteger('id')->autoIncrement()->comment('管理番号');
             $table->string('category_name')->comment('カテゴリ名');
             $table->timestamps();
             $table->softDeletes()->comment('論理削除日時');
-
-            $table->primary('id');
         });
     }
 

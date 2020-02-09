@@ -14,7 +14,7 @@ class CreateEmotionsTable extends Migration
     public function up()
     {
         Schema::create('emotions', function (Blueprint $table) {
-            $table->unsignedBigInteger('article_id')->comment('投稿番号');
+            $table->unsignedBigInteger('article_id')->autoIncrement()->comment('投稿番号');
             $table->bigInteger('user_id')->comment('ユーザID');
             $table->tinyInteger('status')->default(0)->comment('ステータス 0:未登録 1:登録済 2:退会 3:BAN');
             $table->timestamps();
