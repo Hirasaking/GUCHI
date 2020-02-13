@@ -8,7 +8,7 @@ class Article extends Model
 {
     //
     public function getArticles(){
-        return Article::select(
+        $query = Article::select(
             'user_id',
             'body',
             'category1',
@@ -19,6 +19,7 @@ class Article extends Model
             )
             ->whereNull('deleted_at')
             ->get();
+        return $query;
         // return Article::paginate(5);
         // return Article::all();
     }

@@ -16,7 +16,7 @@ class ArticleController extends Controller
     {
         $articles = new Article();
         $data = $articles->getArticles();
-        var_dump($data);exit;
+        // var_dump($data);exit;
         return view('article.index')->with('data', $data);
     }
 
