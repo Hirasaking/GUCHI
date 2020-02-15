@@ -6,21 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    //
+    // 一覧表示に使用する投稿データ取得
     public function getArticles(){
-        $query = Article::select(
-            'user_id',
-            'body',
-            'category1',
-            'category2',
-            'category3',
-            'category4',
-            'status'
-            )
-            ->whereNull('deleted_at')
-            ->get();
+
+        $query = Article::whereNull('articles.deleted_at')
+            ->select(
+                'articles.id',
+                'articles.body',
+                'articles.category1',
+                'articles.category2',
+                'articles.category3',
+                'articles.category4',
+                'articles.status',
+                'user_infos.user_name',
+                'user_infos.gender',
+                'user_infos.job'
+                )
+            ->join('users', 'users.user_id', '=', 'articles.user_id')
+            ->join('user_infos', 'user_infos.user_id', '=', 'users.user_id')
+            ->paginate(20);
+            // ->get();
+
         return $query;
-        // return Article::paginate(5);
-        // return Article::all();
     }
 }

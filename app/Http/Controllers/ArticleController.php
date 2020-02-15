@@ -15,9 +15,12 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = new Article();
-        $data = $articles->getArticles();
+        $article_list = $articles->getArticles();
         // var_dump($data);exit;
-        return view('article.index')->with('data', $data);
+        // foreach($article_list as $data){
+        //     var_dump($data);exit;
+        // }
+        return view('article.index')->with('article_list', $article_list);
     }
 
     /**

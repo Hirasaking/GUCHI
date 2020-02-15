@@ -27,6 +27,6 @@ Route::get('/', function () {
 
 // 投稿関連
 Route::get('article', 'ArticleController@index');
-Route::get('article-create', 'ArticleController@create');
-Route::get('article-confirm', 'ArticleController@confirm');
-Route::get('article-complete', 'ArticleController@complete');
+Route::get('article-create', 'ArticleController@create')->name('article-create');
+Route::get('article-confirm', 'ArticleController@confirm')->name('article-confirm');
+Route::get('article-complete', 'ArticleController@complete')->name('article-complete');

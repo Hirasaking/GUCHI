@@ -27,7 +27,6 @@ class ItemController extends Controller
     public function index(Request $request){
 
       //$item = $this->item;
-      //var_dump($item->sexFilter($request->sex));
 
       /* ローカルスコープを利用することとした為、コメントアウト
       $query = Item::query();
