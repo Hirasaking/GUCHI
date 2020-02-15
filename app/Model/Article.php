@@ -18,6 +18,7 @@ class Article extends Model
                 'articles.category3',
                 'articles.category4',
                 'articles.status',
+                'articles.created_at',
                 'user_infos.user_name',
                 'user_infos.gender',
                 'user_infos.job'

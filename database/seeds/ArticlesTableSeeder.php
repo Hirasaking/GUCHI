@@ -22,6 +22,8 @@ class ArticlesTableSeeder extends Seeder
                 'category3'  => 3,
                 'category4'  => 4,
                 'status'    => 0,
+                'created_at' => '2020-02-20 00:00:00',
+                'updated_at' => '2020-02-20 00:00:00',
             ],
             [
                 'user_id'   => '2',
@@ -31,6 +33,8 @@ class ArticlesTableSeeder extends Seeder
                 'category3'  => 3,
                 'category4'  => 4,
                 'status'    => 0,
+                'created_at' => '2020-02-20 00:00:00',
+                'updated_at' => '2020-02-20 00:00:00',
             ],
             [
                 'user_id'   => '3',
@@ -40,6 +44,8 @@ class ArticlesTableSeeder extends Seeder
                 'category3'  => 3,
                 'category4'  => 4,
                 'status'    => 0,
+                'created_at' => '2020-02-20 00:00:00',
+                'updated_at' => '2020-02-20 00:00:00',
             ],
         ]);
     }
