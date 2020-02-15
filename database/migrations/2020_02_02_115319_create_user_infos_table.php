@@ -18,7 +18,7 @@ class CreateUserInfosTable extends Migration
             $table->string('user_name',20)->comment('アカウント名');
             $table->string('email',50)->comment('メールアドレス');
             $table->string('login_service',50)->comment('ログイン連携サービス');
-            $table->string('pass_word',50)->comment('パスワード');
+            $table->string('pass_word',255)->comment('パスワード');
             $table->tinyInteger('gender')->default(0)->comment('0:なし 1:男 2:女');
             $table->string('job',20)->comment('職業');
             $table->timestamps();
