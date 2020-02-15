@@ -15,8 +15,8 @@ class CreateUserInfosTable extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->BigInteger('user_id')->comment('ユーザID');
-            $table->string('account_name',20)->comment('アカウント名');
-            $table->string('mail_address',50)->comment('メールアドレス');
+            $table->string('user_name',20)->comment('アカウント名');
+            $table->string('email',50)->comment('メールアドレス');
             $table->string('login_service',50)->comment('ログイン連携サービス');
             $table->string('pass_word',50)->comment('パスワード');
             $table->tinyInteger('gender')->default(0)->comment('0:なし 1:男 2:女');
