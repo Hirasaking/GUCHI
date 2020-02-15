@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->unsignedBigInteger('id')->autoIncrement()->comment('管理番号');
+            $table->unsignedBigInteger('user_id')->autoIncrement()->comment('管理番号');
             $table->tinyInteger('status')->nullable()->comment('ステータス 0:未登録 1:登録済 2:退会 3:BAN');
             $table->timestamps();
             $table->softDeletes()->comment('論理削除日時');
