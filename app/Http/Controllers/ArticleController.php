@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Article;
+use App\Http\Requests\ArticleRequest;
+
 class ArticleController extends Controller
 {
+
+    public function __construct(){
+        $this->article = new Article();
+    }
 
     /**
      * Display a listing of the resource.
@@ -24,25 +30,28 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 登録画面の表示
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
+     * @return Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+        return view('article.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  /**
+   * 登録処理
+   *
+   * @param  ArticleRequest  $request
+   * @return Response
+  */
+  public function store(ArticleRequest $request){
+    $article = $this->article;
+    $article->user_id = 1; //$request->name;
+    $article->body = $request->body;
+    $article->save();
+    return redirect()->action('ArticleController@index');
+  }
 
     /**
      * Display the specified resource.
