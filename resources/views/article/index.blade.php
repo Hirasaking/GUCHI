@@ -46,9 +46,7 @@
         <a class="btn btn-secondary filtered" style="visibility:hidden" href="/?page=1">検索を解除</a>
         <div class="float-right">
           <!-- TODO リンク先追加 -->
-          {{Form::open(['method' => 'get', 'route' => 'index'])}}
-          {{Form::submit('男性', ['name' => 'sex', 'class' => 'btn btn-outline-secondary'])}}
-          <a class="btn btn-outline-secondary" href="{{ action('ItemController@create') }}">新規</a>
+          <a class="btn btn-outline-secondary" href="{{ action('ArticleController@create') }}">新規</a>
           <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
         </div>
       </div>
@@ -104,11 +102,9 @@
                 <div class="col-12">
                   <div class="float-right">
                     <!-- TODO:リンク先追加 -->
-                    <!-- <a class="btn btn-outline-secondary " href="{{ route('show', ['id' => $item->id]) }}">詳細</a> -->
+                    <a class="btn btn-outline-secondary " href="{{ route('show', ['id' => $item->id]) }}">詳細</a>
                     <!-- TODO:リンク先追加 -->
-                    <!-- <a class="btn btn-outline-secondary " href="{{ route('edit', ['id' => $item->id]) }}">編集</a> -->
-                    <!-- TODO:リンク先追加 -->
-                    <!-- <a class="btn btn-outline-secondary " href="{{ route('delete', ['item' => $item]) }}">削除</a> -->
+                    <a class="btn btn-outline-secondary " href="{{ route('edit', ['id' => $item->id]) }}">編集</a>
                   </div>
                 </div>
               </div>
@@ -121,7 +117,7 @@
       <div class="col-12">
         <div class="float-right">
           <!-- TODO:リンク先追加 -->
-          <a class="btn btn-outline-secondary" href="{{ action('ItemController@create') }}">新規</a>
+          <a class="btn btn-outline-secondary" href="{{ action('ArticleController@create') }}">新規</a>
           <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
         </div>
       </div>
