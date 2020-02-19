@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Article;
+use App\Model\Comment;
 use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
@@ -20,12 +21,16 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = new Article();
+        // 投稿内容とコメントを取得
+        $articles = $this->article;
         $article_list = $articles->getArticles();
-        // var_dump($data);exit;
-        // foreach($article_list as $data){
-        //     var_dump($data);exit;
-        // }
+
+        foreach($article_list as $data){
+            var_dump($data);exit;
+        }
+
+        // コメント
+
         return view('article.index')->with('article_list', $article_list);
     }
 
