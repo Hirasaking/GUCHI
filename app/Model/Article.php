@@ -21,10 +21,12 @@ class Article extends Model
                 'articles.created_at',
                 'user_infos.user_name',
                 'user_infos.gender',
-                'user_infos.job'
+                'user_infos.job',
+                'comments.body as comment'
                 )
             ->join('users', 'users.user_id', '=', 'articles.user_id')
             ->join('user_infos', 'user_infos.user_id', '=', 'users.user_id')
+            ->join('comments', 'comments.article_id', '=', 'articles.id')
             ->paginate(20);
             // ->get();
 
