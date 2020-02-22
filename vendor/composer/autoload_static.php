@@ -33,6 +33,10 @@ class ComposerStaticInitfac44d57abe02f8e4f64c8c33d799aaf
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'k' => 
+        array (
+            'kanazaca\\CounterCache\\' => 22,
+        ),
         'X' => 
         array (
             'XdgBaseDir\\' => 11,
@@ -156,6 +160,10 @@ class ComposerStaticInitfac44d57abe02f8e4f64c8c33d799aaf
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'kanazaca\\CounterCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kanazaca/counter-cache/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -447,6 +455,7 @@ class ComposerStaticInitfac44d57abe02f8e4f64c8c33d799aaf
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\ArticleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ArticleRequest.php',
         'App\\Http\\Requests\\UsersRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UsersRequest.php',
+        'App\\Like' => __DIR__ . '/../..' . '/app/Like.php',
         'App\\Model\\Article' => __DIR__ . '/../..' . '/app/Model/Article.php',
         'App\\Model\\Comment' => __DIR__ . '/../..' . '/app/Model/Comment.php',
         'App\\Model\\Item' => __DIR__ . '/../..' . '/app/Model/Item.php',
@@ -1854,7 +1863,6 @@ class ComposerStaticInitfac44d57abe02f8e4f64c8c33d799aaf
         'Illuminate\\Foundation\\Testing\\Constraints\\SoftDeletedInDatabase' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Testing/Constraints/SoftDeletedInDatabase.php',
         'Illuminate\\Foundation\\Testing\\DatabaseMigrations' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Testing/DatabaseMigrations.php',
         'Illuminate\\Foundation\\Testing\\DatabaseTransactions' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Testing/DatabaseTransactions.php',
-        'Illuminate\\Foundation\\Testing\\MockStream' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Testing/MockStream.php',
         'Illuminate\\Foundation\\Testing\\PendingCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Testing/PendingCommand.php',
         'Illuminate\\Foundation\\Testing\\RefreshDatabase' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Testing/RefreshDatabase.php',
         'Illuminate\\Foundation\\Testing\\RefreshDatabaseState' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Testing/RefreshDatabaseState.php',
@@ -4505,6 +4513,8 @@ class ComposerStaticInitfac44d57abe02f8e4f64c8c33d799aaf
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'kanazaca\\CounterCache\\CounterCache' => __DIR__ . '/..' . '/kanazaca/counter-cache/src/CounterCache.php',
+        'kanazaca\\CounterCache\\CounterCacheServiceProvider' => __DIR__ . '/..' . '/kanazaca/counter-cache/src/CounterCacheServiceProvider.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',
