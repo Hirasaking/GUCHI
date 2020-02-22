@@ -24,6 +24,12 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('status')->default(0)->comment('ステータス');
             $table->timestamps();
             $table->softDeletes()->comment('論理削除日時');
+
+            // 外部キー制約
+            $table->foreign('user_id')
+                    ->references('user_id')
+                    ->on('users')
+                    ->onDelete('cascade');
         });
     }
 
