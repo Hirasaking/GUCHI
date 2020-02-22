@@ -98,6 +98,16 @@
                   <p>{{ $item->created_at }}</p>
                 </div>
               </div>
+              @if($item->comment)
+              <div class="row">
+                <div class="col-3">
+                  <p>コメント</p>
+                </div>
+                <div class="col-9">
+                  <p>{{ $item->comment }}</p>
+                </div>
+              </div>
+              @endif
               <div class="row">
                 <div class="col-12">
                   <div class="float-right">
