@@ -51,8 +51,8 @@
         </div>
       </div>
     </div>
-    @empty($article_list)
-      <li class="list-group-item">
+    @empty($data_list)
+      <li class="list-group-data">
         対象のデータがありません
       </li>
     @endempty
@@ -60,26 +60,26 @@
     <div class="row" >
       <div class="col-12">
         <!-- TODO:ページネーション -->
-        {{ $article_list->links() }}
+        {{ $data_list->links() }}
       </div>
     </div>
 
     <div class="row">
       <div class="col-12">
         <ul class="list-group">
-          @empty(count($article_list))
-            <li class="list-group-item">
+          @empty(count($data_list))
+            <li class="list-group-data">
               対象のデータがありません
             </li>
           @endempty
-          @foreach($article_list as $item)
-            <li class="list-group-item">
+          @foreach($data_list as $data)
+            <li class="list-group-data">
               <div class="row">
                 <div class="col-3">
                   <p>名前</p>
                 </div>
                 <div class="col-9">
-                  <p>{{ $item->user_name }}</p>
+                  <p>{{ $data['user_name'] }}</p>
                 </div>
               </div>
               <div class="row">
@@ -87,7 +87,7 @@
                   <p>本文</p>
                 </div>
                 <div class="col-9">
-                  <p>{{ $item->body }}</p>
+                  <p>{{ $data['body'] }}</p>
                 </div>
               </div>
               <div class="row">
@@ -95,26 +95,24 @@
                   <p>登録日</p>
                 </div>
                 <div class="col-9">
-                  <p>{{ $item->created_at }}</p>
+                  <p>{{ $data['created_at'] }}</p>
                 </div>
               </div>
-              @if($item->comment)
+              @if($data['comment'])
               <div class="row">
                 <div class="col-3">
                   <p>コメント</p>
                 </div>
                 <div class="col-9">
-                  <p>{{ $item->comment }}</p>
+                  @foreach ($data['comment'] as $comment)
+                    <p>{{ $comment }}</p>
+                  @endforeach
                 </div>
               </div>
               @endif
               <div class="row">
                 <div class="col-12">
                   <div class="float-right">
-                    <!-- TODO:リンク先追加 -->
-                    <a class="btn btn-outline-secondary " href="{{ route('show', ['id' => $item->id]) }}">詳細</a>
-                    <!-- TODO:リンク先追加 -->
-                    <a class="btn btn-outline-secondary " href="{{ route('edit', ['id' => $item->id]) }}">編集</a>
                   </div>
                 </div>
               </div>
