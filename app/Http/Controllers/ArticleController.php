@@ -12,6 +12,7 @@ class ArticleController extends Controller
 
     public function __construct(){
         $this->article = new Article();
+        $this->comment = new Comment();
     }
 
     /**
@@ -21,17 +22,16 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // 投稿内容とコメントを取得
-        $articles = $this->article;
-        $article_list = $articles->getArticles();
+        $data_list = [];
+        // 投稿内容を取得
+        $article_list = $this->article->getArticles();
+        $article_id_list = $this->article->getArticleId($article_list);
+        // 投稿IDからコメントを取得
+        $comment_list = $this->comment->getComment($article_id_list);
+        // データをページャへ渡す形に整形
+        $data_list = $this->article->adjustData($article_list, $comment_list);
 
-        foreach($article_list as $data){
-            var_dump($data);exit;
-        }
-
-        // コメント
-
-        return view('article.index')->with('article_list', $article_list);
+        return view('article.index')->with('data_list', $data_list);
     }
 
     /**
