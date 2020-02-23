@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Article extends Model
 {
@@ -24,9 +25,7 @@ class Article extends Model
                 'articles.category4',
                 'articles.status',
                 'articles.created_at',
-                'user_infos.user_name',
-                'user_infos.gender',
-                'user_infos.job'
+                'user_infos.user_name'
                 )
             ->join('users', 'users.user_id', '=', 'articles.user_id')
             ->join('user_infos', 'user_infos.user_id', '=', 'users.user_id')
@@ -47,5 +46,38 @@ class Article extends Model
         }
 
         return $article_id_list;
+    }
+
+    /**
+     * データを整形してページャ用にして返す
+     * @param Article $article_list
+     * @param array $comment_list
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function adjustData($article_list, $comment_list){
+        // 処理追加
+        foreach($article_list as $key => $article){
+            $data_list[$key]['id'] = $article->id;
+            $data_list[$key]['body'] = $article->body;
+            $data_list[$key]['category1'] = $article->category1;
+            $data_list[$key]['category2'] = $article->category2;
+            $data_list[$key]['category3'] = $article->category3;
+            $data_list[$key]['category4'] = $article->category4;
+            $data_list[$key]['status'] = $article->status;
+            $data_list[$key]['created_at'] = $article->created_at;
+            $data_list[$key]['user_name'] = $article->user_name;
+
+            //コメントがあるなら追加
+            // if(in_array($comment_list, $article->id)){
+            $data_list[$key]['comment'] = $comment_list->get($article->id);
+            // }
+        }
+
+        return new LengthAwarePaginator(
+            $data_list,
+            20,
+            5,
+            1
+        );
     }
 }
