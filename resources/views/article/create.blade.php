@@ -31,8 +31,9 @@
           @endif
           {{ csrf_field() }}
           <div class="form-group">
-            <label>名前</label>
-            <input type="text" name="name" placeholder="記入例：山田　太郎" class="form-control">
+            <label>なんの愚痴？</label>
+            {{Form::button('上司', ['class' => 'boss'])}}
+            <input type="text" name="name" placeholder="記入例：社長" class="form-control">
           </div>
           <div class="form-group">
             <label>本文</label>
