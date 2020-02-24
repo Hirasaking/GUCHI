@@ -75,11 +75,8 @@
           @foreach($data_list as $data)
             <li class="list-group-data">
               <div class="row">
-                <div class="col-3">
-                  <p>名前</p>
-                </div>
                 <div class="col-9">
-                  <p>{{ $data['user_name'] }}</p>
+                  <p>{{ $data['user_name'] }}の愚痴</p>
                 </div>
               </div>
               <div class="row">
@@ -98,6 +95,7 @@
                   <p>{{ $data['created_at'] }}</p>
                 </div>
               </div>
+              <a class="btn btn-outline-secondary" href="{{ action('CommentController@create', $data['id']) }}">コメントする</a>
               @if($data['comment'])
               <div class="row">
                 <div class="col-3">
