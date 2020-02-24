@@ -31,3 +31,5 @@ Route::get('article-create', 'ArticleController@create')->name('create');
 Route::post('article-create', 'ArticleController@store')->name('store');
 Route::get('article-confirm', 'ArticleController@confirm')->name('article-confirm');
 Route::get('article-complete', 'ArticleController@complete')->name('article-complete');
+
+Route::get('comment-create/{id}', 'CommentController@create')->name('comment');
