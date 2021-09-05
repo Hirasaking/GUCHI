@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  @yield('developMenu')
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">{{ config('const.APPLICATION.NAME', 'Laravel') }}</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false"

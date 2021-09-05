@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Routing\RouteGroup;
+
 Route::get('item', 'ItemController@index')->name('index');
 // Route::get('/items/create', 'ItemController@create')->name('create');
 // Route::post('/items', 'ItemController@store')ç
@@ -25,8 +27,28 @@ Route::get('welcome', function () {
     return view('welcome');
 });
 
+Route::get('/', 'IndexController@index');
+
+// 開発用メニュー
+Route::prefix('develop')->group(function () {
+    Route::get('/command', 'DevelopMenuController@command')->name('command');
+});
+
+Route::prefix('menu')->group(function () {
+    // Route::get('/user/{name}', function ($name) {
+        //
+    // })->where('name', '[A-Za-z]+');
+
+    Route::get('/{param}', 'IndexController@param')->name('param-test')
+    ->where('param', '[0-9]+');
+
+
+    // Route::get('/{param}', 'IndexController@param')->name('param')
+    // ->where('param', config('const.ROUTE_GUARD.AtoZ'));
+});
+
 // 投稿関連
-Route::get('/', 'ArticleController@index');
+// Route::get('/', 'ArticleController@index');
 Route::get('article-create', 'ArticleController@create')->name('create');
 Route::post('article-create', 'ArticleController@store')->name('store');
 Route::get('article-confirm', 'ArticleController@confirm')->name('article-confirm');
